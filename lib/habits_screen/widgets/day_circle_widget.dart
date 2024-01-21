@@ -11,6 +11,7 @@ class DayCircleWidget extends StatefulWidget {
 }
 
 class _DayCircleWidgetState extends State<DayCircleWidget> {
+  bool isClicked = true;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -25,24 +26,31 @@ class _DayCircleWidgetState extends State<DayCircleWidget> {
             height: 0,
           ),
         ),
-        Container(
-          alignment: Alignment.center,
-          child: Text(
-            widget.date,
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 22,
-              fontFamily: 'Poppins',
-              fontWeight: FontWeight.w700,
-              height: 0,
+        InkWell(
+          onTap: () => setState(() {
+            isClicked = !isClicked;
+          }),
+          child: Container(
+            alignment: Alignment.center,
+            child: Text(
+              widget.date,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 22,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w700,
+                height: 0,
+              ),
             ),
-          ),
-          width: 54,
-          height: 54,
-          decoration: ShapeDecoration(
-            color: Color(0xFF0D4B07),
-            shape: OvalBorder(
-              side: BorderSide(width: 4, color: Color(0xFF08991F)),
+            width: 54,
+            height: 54,
+            decoration: ShapeDecoration(
+              color: isClicked ? Color(0xFF0D4B07) : Color(0xFFB31111),
+              shape: OvalBorder(
+                side: BorderSide(
+                    width: 4,
+                    color: isClicked ? Color(0xFF08991F) : Color(0xFFF61724)),
+              ),
             ),
           ),
         ),
